@@ -1,7 +1,7 @@
 {
   "name": "devcom",
   "version": "1.0.0",
-  "description": "A community for developers to share portofolios and connect with other developers",
+  "description": "A community for developers to share portfolios and connect with other developers",
   "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
