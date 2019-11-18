@@ -176,7 +176,7 @@ router.post('/experience', passport.authenticate('jwt', { session: false }), (re
            to: req.body.to,
            current: req.body.current,
            description: req.body.description,
-       }
+       };
 
        // Add to exp array
        profile.experience.unshift(newExp);
