@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
 // @route  POST api/posts
 // @desc   Create post
 // @access Private
-reouter.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
 
     // Check Validation
