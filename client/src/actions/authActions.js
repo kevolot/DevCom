@@ -7,7 +7,7 @@
  * Copyright (c) 2019 Your Company
  */
 import axios from 'axios';
-import jet_decode from 'jwt-decode';
+import jwt_decode from 'jwt-decode';
 
 import { GET_ERRORS, SET_CURRENT_USER } from "./types"
 import setAuthToken from "../utils/setAuthToken";
@@ -49,5 +49,15 @@ export const setCurrentUser = (decoded) => {
   return {
     type: SET_CURRENT_USER,
     payload: decoded
-  }
+  };
+};
+
+// Log user out
+export const logoutUser = () => dispatch => {
+  // Remove token from localstorage
+  localStorage.removeItem('jwtToken');
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to {} which will set isAuthenticated to false
+  dispatch(setCurrentUser({}));
 }
