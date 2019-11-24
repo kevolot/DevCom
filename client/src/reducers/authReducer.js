@@ -1,4 +1,4 @@
-import { TEST_DISPATCH } from "../actions/types";
+import { GET_ERRORS } from "../actions/types";
 
 /**
  * Description.
@@ -7,18 +7,12 @@ import { TEST_DISPATCH } from "../actions/types";
  * @since 16:05 20 Nov 2019
  */
 
-const initialState = {
-    isAuthenticated: false,
-    user: {}
-};
+const initialState = {};
 
 export default function (state = initialState, action) {
     switch(action.type) {
-        case TEST_DISPATCH:
-            return {
-                ...state,
-                user: action.payload
-            }
+        case GET_ERRORS:
+            return action.payload
         default:
             return state;
     }
