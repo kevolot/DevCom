@@ -1,5 +1,3 @@
-import { GET_ERRORS } from "../actions/types";
-
 /**
  * Description.
  *
@@ -7,12 +5,22 @@ import { GET_ERRORS } from "../actions/types";
  * @since 16:05 20 Nov 2019
  */
 
-const initialState = {};
+import { SET_CURRENT_USER } from "../actions/types";
+import isEmpty from '../validation/is-empty';
+
+const initialState = {
+    isAuthenticated: false,
+    user: {}
+};
 
 export default function (state = initialState, action) {
     switch(action.type) {
-        case GET_ERRORS:
-            return action.payload
+        case SET_CURRENT_USER:
+            return {
+                ...state,
+                isAuthenticated: !isEmpty(action.payload),
+                user: action.payload
+            }
         default:
             return state;
     }
