@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import axios from 'axios';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 
-export default class Register extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -13,8 +16,7 @@ export default class Register extends Component {
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.props.registerUser(newUser);
   }
 
   onChange(e) {
@@ -39,8 +41,11 @@ export default class Register extends Component {
   render() {
     const { errors } = this.state;
 
+    const { user } = this.props.auth;
+
     return (
       <div className="register">
+        {user ? user.name: null}
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
@@ -108,6 +113,17 @@ export default class Register extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropsTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { registerUser })(Register);
