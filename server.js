@@ -8,6 +8,7 @@ const path = require('path');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
+const MONGO_URI = require('./config/keys');
 
 // Config dotenv
 dotenv.config();
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // Database config
-const db_uri = process.env.MONGO_URI;
+const db_uri = require('./config/keys').mongoURI;
 
 // Connect to mongodb
 mongoose
